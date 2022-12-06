@@ -1,9 +1,10 @@
+import Utils.Companion.readFromResources
 import org.junit.jupiter.api.Test
 
 class Day1 {
     @Test
     fun test1() {
-        val fileContent = Utils::class.java.getResource("1-A").readText()
+        val fileContent = readFromResources("1-A")
         println(
             fileContent
                 .split("\n\n")
@@ -16,14 +17,14 @@ class Day1 {
 
     @Test
     fun test2() {
-        val fileContent = Utils::class.java.getResource("1-A").readText()
-        val calories:List<Int> = fileContent.split("\n\n").map {
+        val fileContent = readFromResources("1-A")
+        val calories:List<Int> = fileContent.split("\n\n").map { it ->
             it.split(("\n"))
                 .sumOf { it.toInt() }
         }
-        var top1:Int = 0
-        var top2:Int = 0
-        var top3:Int = 0
+        var top1 = 0
+        var top2 = 0
+        var top3 = 0
 
        for (i in calories.indices){
            val calory = calories[i]

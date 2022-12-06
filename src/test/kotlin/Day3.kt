@@ -1,18 +1,19 @@
+import Utils.Companion.readFromResources
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class Day3 {
 
-    val input = mutableListOf<String>()
+    private val input = mutableListOf<String>()
 
-    fun charToInt(char: Char): Int {
+    private fun charToInt(char: Char): Int {
         return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(char) + 1
     }
 
     @BeforeEach
     fun captureInput() {
         input.addAll(
-            Utils::class.java.getResource("3").readText()
+            readFromResources("3")
                 .split("\n")
         )
     }

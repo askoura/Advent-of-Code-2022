@@ -1,3 +1,4 @@
+import Utils.Companion.readFromResources
 import org.junit.jupiter.api.Test
 
 class Day2 {
@@ -11,25 +12,25 @@ class Day2 {
         ROCK(1), PAPER(2), SCISSORS(3)
     }
 
-    fun charToMove(char: Char): MOVE {
+    private fun charToMove(char: Char): MOVE {
         return when (char) {
             'A', 'X' -> MOVE.ROCK
             'B', 'Y' -> MOVE.PAPER
             'C', 'Z' -> MOVE.SCISSORS
-            else -> throw Exception("UNknown char: " + char)
+            else -> throw Exception("UNknown char: $char")
         }
     }
 
-    fun charToResult(char: Char): Result {
+    private fun charToResult(char: Char): Result {
         return when (char) {
              'X' -> Result.LOSE
              'Y' -> Result.DRAW
              'Z' -> Result.WIN
-            else -> throw Exception("UNknown char: " + char)
+            else -> throw Exception("UNknown char: $char")
         }
     }
 
-    fun moveToResult(first: MOVE,result: Result): MOVE {
+    private fun moveToResult(first: MOVE, result: Result): MOVE {
         return when (first) {
             MOVE.ROCK -> when (result) {
                 Result.DRAW -> MOVE.ROCK
@@ -81,7 +82,7 @@ class Day2 {
 
     @Test
     fun test1() {
-        val fileContent = Utils::class.java.getResource("2").readText()
+        val fileContent = readFromResources("2")
         println(
             fileContent
                 .split("\n")
@@ -91,8 +92,8 @@ class Day2 {
 
 
     @Test
-    fun test3() {
-        val fileContent = Utils::class.java.getResource("2").readText()
+    fun test2() {
+        val fileContent = readFromResources("2")
         println(
             fileContent
                 .split("\n")

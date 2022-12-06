@@ -1,9 +1,10 @@
+import Utils.Companion.readFromResources
 import org.junit.jupiter.api.Test
 
 class Day6 {
 
 
-    private val input = Utils::class.java.getResource("6")!!.readText().toCharArray().toList() ?: listOf()
+    private val input = readFromResources("6").toCharArray().toList()
 
 
     private fun isUnique(buffer: MutableList<Char>, char: Char): Boolean {
@@ -24,6 +25,25 @@ class Day6 {
 
     @Test
     fun test1() {
+        val threshold = 4
+        val buffer = mutableListOf<Char>()
+        (0 until threshold).forEach {
+            buffer.add(input[it])
+        }
+        println("at: $threshold - $buffer")
+        input.subList(threshold, input.size).forEachIndexed { index, c ->
+            if (isUnique(buffer, c)) {
+                println("the index is ${index + threshold + 1}")
+                println(buffer.subList(1, threshold).apply { add(c) })
+                return
+            } else {
+                pushToBuffer(buffer, c, threshold)
+            }
+            println("at: ${index + threshold + 1} - $buffer")
+        }
+    }
+    @Test
+    fun test2() {
         val threshold = 14
         val buffer = mutableListOf<Char>()
         (0 until threshold).forEach {

@@ -1,3 +1,4 @@
+import Utils.Companion.readFromResources
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
@@ -5,8 +6,8 @@ class Day5 {
 
     data class Instruction(val from: Int, val to: Int, val quantity: Int)
 
-    val crates = mutableListOf(mutableListOf<Char>())
-    val instructions = mutableListOf<Instruction>()
+    private val crates = mutableListOf(mutableListOf<Char>())
+    private val instructions = mutableListOf<Instruction>()
 
     init {
         (0 until 9).map {
@@ -16,10 +17,10 @@ class Day5 {
 
     @BeforeEach
     fun getInput() {
-        val regex = Regex("\\[(\\S)\\].*")
+        val regex = Regex("\\[(\\S)].*")
         val instructionRegex = Regex("move (\\d+) from (\\d) to (\\d)")
-        val cratesContent = Utils::class.java.getResource("5-crates").readText()
-        val instructionsContent = Utils::class.java.getResource("5").readText()
+        val cratesContent = readFromResources("5-crates")
+        val instructionsContent = readFromResources("5")
         val lines = cratesContent.split("\n")
         val instructionLines = instructionsContent.split("\n")
         lines.take(lines.size - 1).forEach { line ->
